@@ -1,6 +1,7 @@
 import React from "react";
 import { Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import PressableScale from "./ui/PressableScale";
@@ -15,11 +16,13 @@ import { criarEstilos } from "../theme/criarEstilos";
  */
 type BottomTabBarProps = {
   state: { index: number; routes: { key: string; name: string }[] };
-  navigation: any;
+  /** Pode não vir em todas as versões do SDK: por isso a navegação usa o router. */
+  navigation?: any;
 };
 
 type Aba = {
   nome: string;
+  href: "/" | "/favoritos" | "/inscricoes" | "/ajustes";
   rotulo: string;
   icone: keyof typeof Ionicons.glyphMap;
   iconeAtivo: keyof typeof Ionicons.glyphMap;
@@ -27,10 +30,10 @@ type Aba = {
 
 /** Ordem e aparência das abas. A que não estiver aqui fica escondida. */
 const ABAS: Aba[] = [
-  { nome: "index", rotulo: "Eventos", icone: "calendar-outline", iconeAtivo: "calendar" },
-  { nome: "favoritos", rotulo: "Favoritos", icone: "heart-outline", iconeAtivo: "heart" },
-  { nome: "inscricoes", rotulo: "Inscrições", icone: "ticket-outline", iconeAtivo: "ticket" },
-  { nome: "ajustes", rotulo: "Ajustes", icone: "options-outline", iconeAtivo: "options" },
+  { nome: "index", href: "/", rotulo: "Eventos", icone: "calendar-outline", iconeAtivo: "calendar" },
+  { nome: "favoritos", href: "/favoritos", rotulo: "Favoritos", icone: "heart-outline", iconeAtivo: "heart" },
+  { nome: "inscricoes", href: "/inscricoes", rotulo: "Inscrições", icone: "ticket-outline", iconeAtivo: "ticket" },
+  { nome: "ajustes", href: "/ajustes", rotulo: "Ajustes", icone: "options-outline", iconeAtivo: "options" },
 ];
 
 /**
@@ -38,6 +41,7 @@ const ABAS: Aba[] = [
  */
 export default function TabBar({ state, navigation }: BottomTabBarProps) {
   const insets = useSafeAreaInsets();
+  const router = useRouter();
 
   const rotaAtiva = state.routes[state.index]?.name;
 
@@ -56,20 +60,21 @@ export default function TabBar({ state, navigation }: BottomTabBarProps) {
         accessibilityLabel={aba.rotulo}
         accessibilityState={{ selected: ativa }}
         onPress={() => {
-          const evento = navigation.emit({
+          if (ativa) return;
+
+          // Avisa a navegação (quando ela oferece o evento) e troca de aba pelo router,
+          // que funciona igual em qualquer versão do SDK.
+          const evento = navigation?.emit?.({
             type: "tabPress",
             target: rota.key,
             canPreventDefault: true,
           });
 
-          if (!ativa && !evento.defaultPrevented) {
+          if (!evento?.defaultPrevented) {
             haptics.toque();
-            navigation.navigate(rota.name as never);
+            router.navigate(aba.href);
           }
         }}
-        onLongPress={() =>
-          navigation.emit({ type: "tabLongPress", target: rota.key })
-        }
       >
         <View
           key={ativa ? "ativa" : "inativa"}
