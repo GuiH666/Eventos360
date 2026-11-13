@@ -1,0 +1,173 @@
+import React, { forwardRef, useState } from "react";
+import {
+  Text,
+  TextInput,
+  TextInputProps,
+  View,
+} from "react-native";
+
+import { COLORS } from "../../theme/colors";
+import { criarEstilos } from "../../theme/criarEstilos";
+
+type Props = TextInputProps & {
+  rotulo: string;
+  /** Texto cinza ao lado do rótulo (ex.: "opcional") */
+  dica?: string;
+  erro?: string;
+  /** Texto fixo antes do valor (ex.: "R$") */
+  prefixo?: string;
+  /** Altura maior e fonte maior, para o campo principal */
+  grande?: boolean;
+  /** Algo à direita do rótulo (ex.: contador) */
+  direita?: React.ReactNode;
+  /** Número de linhas visíveis (campo de texto longo). Padrão: uma linha. */
+  linhas?: number;
+};
+
+/**
+ * Campo de texto com rótulo, estado de foco e mensagem de erro.
+ * O rótulo fica sempre visível (nada de placeholder fazendo papel de título).
+ */
+const Field = forwardRef<TextInput, Props>(function Field(
+  { rotulo, dica, erro, prefixo, grande, direita, linhas, onFocus, onBlur, style, ...rest },
+  ref
+) {
+  const [focado, setFocado] = useState(false);
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.linhaRotulo}>
+        <Text style={styles.rotulo}>
+          {rotulo}
+          {dica ? <Text style={styles.dica}>  {dica}</Text> : null}
+        </Text>
+        {direita}
+      </View>
+
+      <View
+        style={[
+          styles.caixa,
+          grande && styles.caixaGrande,
+          linhas && linhas > 1
+            ? { height: 34 + linhas * 22, alignItems: "flex-start", paddingTop: 12 }
+            : null,
+          focado && styles.caixaFocada,
+          !!erro && styles.caixaErro,
+        ]}
+      >
+        {prefixo ? (
+          <Text style={[styles.prefixo, grande && styles.prefixoGrande]}>
+            {prefixo}
+          </Text>
+        ) : null}
+
+        <TextInput
+          ref={ref}
+          placeholderTextColor={COLORS.textMuted}
+          selectionColor={COLORS.primaryLight}
+          cursorColor={COLORS.primaryLight}
+          accessibilityLabel={rotulo}
+          multiline={linhas !== undefined && linhas > 1}
+          textAlignVertical={linhas !== undefined && linhas > 1 ? "top" : "center"}
+          {...rest}
+          onFocus={(e) => {
+            setFocado(true);
+            onFocus?.(e);
+          }}
+          onBlur={(e) => {
+            setFocado(false);
+            onBlur?.(e);
+          }}
+          style={[styles.input, grande && styles.inputGrande, style]}
+        />
+      </View>
+
+      {erro ? <Text style={styles.erro}>{erro}</Text> : null}
+    </View>
+  );
+});
+
+export default Field;
+
+const styles = criarEstilos(() => ({
+  container: {
+    marginBottom: 6,
+  },
+
+  linhaRotulo: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    marginBottom: 8,
+  },
+
+  rotulo: {
+    color: COLORS.text,
+    fontSize: 14,
+    fontWeight: "800",
+    letterSpacing: -0.1,
+  },
+
+  dica: {
+    color: COLORS.textMuted,
+    fontSize: 13,
+    fontWeight: "500",
+  },
+
+  caixa: {
+    height: 56,
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: COLORS.surface,
+    borderRadius: 18,
+    borderWidth: 1.5,
+    borderColor: COLORS.border,
+    paddingHorizontal: 16,
+  },
+
+  caixaGrande: {
+    height: 66,
+    borderRadius: 20,
+  },
+
+  caixaFocada: {
+    borderColor: COLORS.text,
+    backgroundColor: COLORS.surface,
+  },
+
+  caixaErro: {
+    borderColor: COLORS.danger,
+  },
+
+  prefixo: {
+    color: COLORS.textMuted,
+    fontSize: 16,
+    fontWeight: "700",
+    marginRight: 8,
+  },
+
+  prefixoGrande: {
+    fontSize: 19,
+  },
+
+  input: {
+    flex: 1,
+    color: COLORS.text,
+    fontSize: 16,
+    fontWeight: "700",
+    paddingVertical: 0,
+  },
+
+  inputGrande: {
+    fontSize: 20,
+    fontWeight: "800",
+    letterSpacing: -0.3,
+  },
+
+  erro: {
+    color: COLORS.danger,
+    fontSize: 13,
+    fontWeight: "700",
+    marginTop: 6,
+  },
+}));

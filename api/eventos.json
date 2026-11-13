@@ -1,0 +1,384 @@
+{
+  "versao": 1,
+  "atualizadoEm": "2026-11-12T12:00:00-03:00",
+  "eventos": [
+    {
+      "id": "ev-001",
+      "titulo": "Abertura da Semana de Tecnologia",
+      "descricao": "Palestra de abertura com a apresentação da programação da semana, painel com egressos e sorteio de brindes para quem fez check-in.",
+      "categoria": "Palestra",
+      "modalidade": "Presencial",
+      "inicio": "2026-10-20T19:00:00-03:00",
+      "fim": "2026-10-20T21:30:00-03:00",
+      "local": "Auditório Central",
+      "organizador": "Coordenação de ADS",
+      "vagas": 250,
+      "vagasRestantes": 0,
+      "gratuito": true,
+      "preco": 0,
+      "situacao": "confirmado",
+      "link": "https://eventos360.example/ev-001",
+      "tags": [
+        "tecnologia",
+        "abertura"
+      ]
+    },
+    {
+      "id": "ev-002",
+      "titulo": "Oficina de Git e GitHub para Iniciantes",
+      "descricao": "Do primeiro commit ao primeiro pull request: versionamento, branches, resolução de conflitos e boas práticas de colaboração.",
+      "categoria": "Oficina",
+      "modalidade": "Online",
+      "inicio": "2026-10-28T14:00:00-03:00",
+      "fim": "2026-10-28T17:00:00-03:00",
+      "local": "Google Meet",
+      "organizador": "Laboratório de Desenvolvimento",
+      "vagas": 80,
+      "vagasRestantes": 12,
+      "gratuito": true,
+      "preco": 0,
+      "situacao": "confirmado",
+      "link": "https://eventos360.example/ev-002",
+      "tags": [
+        "git",
+        "github"
+      ]
+    },
+    {
+      "id": "ev-003",
+      "titulo": "Hackathon Campus 2026",
+      "descricao": "Maratona de 24 horas para criar soluções digitais para problemas reais do campus. Equipes de 3 a 5 pessoas e mentoria durante todo o evento.",
+      "categoria": "Hackathon",
+      "modalidade": "Presencial",
+      "inicio": "2026-11-07T09:00:00-03:00",
+      "fim": "2026-11-08T18:00:00-03:00",
+      "local": "Laboratórios 1 a 4",
+      "organizador": "Centro Acadêmico de ADS",
+      "vagas": 60,
+      "vagasRestantes": 0,
+      "gratuito": true,
+      "preco": 0,
+      "situacao": "confirmado",
+      "link": "https://eventos360.example/ev-003",
+      "tags": [
+        "hackathon",
+        "equipes"
+      ]
+    },
+    {
+      "id": "ev-004",
+      "titulo": "Feira de Estágios do Semestre",
+      "descricao": "Empresas parceiras com vagas de estágio e trainee, bate-papo com recrutadores e revisão rápida de currículos.",
+      "categoria": "Profissional",
+      "modalidade": "Presencial",
+      "inicio": "2026-11-10T10:00:00-03:00",
+      "fim": "2026-11-10T16:00:00-03:00",
+      "local": "Pátio de Eventos",
+      "organizador": "Central de Carreiras",
+      "vagas": 600,
+      "vagasRestantes": 210,
+      "gratuito": true,
+      "preco": 0,
+      "situacao": "confirmado",
+      "link": "https://eventos360.example/ev-004",
+      "tags": [
+        "estágio",
+        "carreira"
+      ]
+    },
+    {
+      "id": "ev-010",
+      "titulo": "Palestra: Segurança Digital no Dia a Dia",
+      "descricao": "Golpes, phishing e vazamento de dados: como se proteger e o que fazer quando algo dá errado. Inclui demonstração ao vivo de um golpe de engenharia social.",
+      "categoria": "Palestra",
+      "modalidade": "Online",
+      "inicio": "2026-11-13T20:00:00-03:00",
+      "fim": "2026-11-13T21:30:00-03:00",
+      "local": "Google Meet",
+      "organizador": "Núcleo de Segurança da Informação",
+      "vagas": 300,
+      "vagasRestantes": 141,
+      "gratuito": true,
+      "preco": 0,
+      "situacao": "confirmado",
+      "link": "https://eventos360.example/ev-010",
+      "tags": [
+        "segurança",
+        "phishing"
+      ]
+    },
+    {
+      "id": "ev-005",
+      "titulo": "Palestra: Carreira em Desenvolvimento Mobile",
+      "descricao": "Um bate-papo com profissionais de apps nativos e multiplataforma sobre mercado, portfólio, primeiras vagas e como se destacar em processos seletivos.",
+      "categoria": "Palestra",
+      "modalidade": "Online",
+      "inicio": "2026-11-17T19:30:00-03:00",
+      "fim": "2026-11-17T21:00:00-03:00",
+      "local": "Google Meet",
+      "organizador": "Coordenação de ADS",
+      "vagas": 300,
+      "vagasRestantes": 112,
+      "gratuito": true,
+      "preco": 0,
+      "situacao": "confirmado",
+      "link": "https://eventos360.example/ev-005",
+      "tags": [
+        "mobile",
+        "carreira"
+      ]
+    },
+    {
+      "id": "ev-006",
+      "titulo": "Oficina de React Native com Expo",
+      "descricao": "Construa um app do zero com React Native, Expo e TypeScript: navegação, listas, formulários, persistência local e geração de build Android.",
+      "categoria": "Oficina",
+      "modalidade": "Presencial",
+      "inicio": "2026-11-19T14:00:00-03:00",
+      "fim": "2026-11-19T18:00:00-03:00",
+      "local": "Laboratório 3",
+      "organizador": "Laboratório de Desenvolvimento",
+      "vagas": 30,
+      "vagasRestantes": 6,
+      "gratuito": true,
+      "preco": 0,
+      "situacao": "confirmado",
+      "inscricoesAte": "2026-11-18T23:59:00-03:00",
+      "link": "https://eventos360.example/ev-006",
+      "tags": [
+        "react native",
+        "expo"
+      ]
+    },
+    {
+      "id": "ev-016",
+      "titulo": "Oficina de TypeScript do Zero",
+      "descricao": "Tipos, interfaces, generics e como migrar um projeto JavaScript para TypeScript sem sofrer. Traga o notebook.",
+      "categoria": "Oficina",
+      "modalidade": "Online",
+      "inicio": "2026-11-21T09:00:00-03:00",
+      "fim": "2026-11-21T12:00:00-03:00",
+      "local": "Zoom",
+      "organizador": "Laboratório de Desenvolvimento",
+      "vagas": 80,
+      "vagasRestantes": 31,
+      "gratuito": true,
+      "preco": 0,
+      "situacao": "confirmado",
+      "link": "https://eventos360.example/ev-016",
+      "tags": [
+        "typescript"
+      ]
+    },
+    {
+      "id": "ev-009",
+      "titulo": "Workshop: Currículo e LinkedIn para TI",
+      "descricao": "Como montar um currículo objetivo, um perfil de LinkedIn que atrai recrutadores e um portfólio no GitHub que conta a sua história.",
+      "categoria": "Profissional",
+      "modalidade": "Online",
+      "inicio": "2026-11-24T18:30:00-03:00",
+      "fim": "2026-11-24T20:30:00-03:00",
+      "local": "Google Meet",
+      "organizador": "Central de Carreiras",
+      "vagas": 150,
+      "vagasRestantes": 0,
+      "gratuito": true,
+      "preco": 0,
+      "situacao": "confirmado",
+      "link": "https://eventos360.example/ev-009",
+      "tags": [
+        "currículo",
+        "linkedin"
+      ]
+    },
+    {
+      "id": "ev-012",
+      "titulo": "Encontro de Egressos de ADS",
+      "descricao": "Reencontro com ex-alunos para trocar experiências de mercado. Cancelado por indisponibilidade do espaço; nova data será divulgada.",
+      "categoria": "Profissional",
+      "modalidade": "Presencial",
+      "inicio": "2026-11-26T19:00:00-03:00",
+      "fim": "2026-11-26T22:00:00-03:00",
+      "local": "Auditório Central",
+      "organizador": "Coordenação de ADS",
+      "vagas": 120,
+      "vagasRestantes": 80,
+      "gratuito": true,
+      "preco": 0,
+      "situacao": "cancelado",
+      "link": "https://eventos360.example/ev-012",
+      "tags": [
+        "egressos"
+      ]
+    },
+    {
+      "id": "ev-007",
+      "titulo": "Hackathon: Soluções para o Campus",
+      "descricao": "24 horas para prototipar ideias que melhorem a rotina de quem estuda e trabalha no campus. Mentores, jantar incluso e premiação para as três melhores equipes.",
+      "categoria": "Hackathon",
+      "modalidade": "Híbrido",
+      "inicio": "2026-11-28T09:00:00-03:00",
+      "fim": "2026-11-29T18:00:00-03:00",
+      "local": "Laboratórios 1 a 4 e Discord",
+      "organizador": "Centro Acadêmico de ADS",
+      "vagas": 60,
+      "vagasRestantes": 18,
+      "gratuito": true,
+      "preco": 0,
+      "situacao": "confirmado",
+      "link": "https://eventos360.example/ev-007",
+      "tags": [
+        "hackathon",
+        "equipes",
+        "premiação"
+      ]
+    },
+    {
+      "id": "ev-008",
+      "titulo": "Semana Acadêmica de ADS",
+      "descricao": "Cinco dias de palestras, minicursos e mesas-redondas sobre desenvolvimento, dados, infraestrutura e carreira. Certificado de 20 horas complementares.",
+      "categoria": "Semana acadêmica",
+      "modalidade": "Presencial",
+      "inicio": "2026-12-01T19:00:00-03:00",
+      "fim": "2026-12-05T22:00:00-03:00",
+      "local": "Bloco B",
+      "organizador": "Centro Acadêmico de ADS",
+      "vagas": 200,
+      "vagasRestantes": 87,
+      "gratuito": true,
+      "preco": 0,
+      "situacao": "confirmado",
+      "link": "https://eventos360.example/ev-008",
+      "tags": [
+        "semana acadêmica",
+        "certificado"
+      ]
+    },
+    {
+      "id": "ev-018",
+      "titulo": "Palestra: Carreira Internacional em TI",
+      "descricao": "Como se preparar para vagas remotas e presenciais no exterior: idioma, entrevistas técnicas, vistos e experiências reais de quem foi.",
+      "categoria": "Palestra",
+      "modalidade": "Online",
+      "inicio": "2026-12-03T19:00:00-03:00",
+      "fim": "2026-12-03T20:30:00-03:00",
+      "local": "Google Meet",
+      "organizador": "Central de Carreiras",
+      "vagas": 250,
+      "vagasRestantes": 180,
+      "gratuito": true,
+      "preco": 0,
+      "situacao": "confirmado",
+      "link": "https://eventos360.example/ev-018",
+      "tags": [
+        "carreira",
+        "internacional"
+      ]
+    },
+    {
+      "id": "ev-011",
+      "titulo": "Oficina de UX para Aplicativos",
+      "descricao": "Princípios de usabilidade, protótipo no Figma e teste rápido com usuários. Sai com um protótipo clicável do seu app.",
+      "categoria": "Oficina",
+      "modalidade": "Híbrido",
+      "inicio": "2026-12-09T19:00:00-03:00",
+      "fim": "2026-12-09T22:00:00-03:00",
+      "local": "Laboratório 2 e Google Meet",
+      "organizador": "Núcleo de Design",
+      "vagas": 40,
+      "vagasRestantes": 22,
+      "gratuito": false,
+      "preco": 15,
+      "situacao": "confirmado",
+      "link": "https://eventos360.example/ev-011",
+      "tags": [
+        "ux",
+        "figma"
+      ]
+    },
+    {
+      "id": "ev-013",
+      "titulo": "Palestra: IA no Mercado de Trabalho",
+      "descricao": "O que muda para quem programa com assistentes de IA: produtividade, riscos, ferramentas e as habilidades que continuam valendo.",
+      "categoria": "Palestra",
+      "modalidade": "Online",
+      "inicio": "2026-12-15T19:00:00-03:00",
+      "fim": "2026-12-15T20:30:00-03:00",
+      "local": "YouTube (transmissão ao vivo)",
+      "organizador": "Coordenação de ADS",
+      "vagas": 500,
+      "vagasRestantes": 341,
+      "gratuito": true,
+      "preco": 0,
+      "situacao": "confirmado",
+      "link": "https://eventos360.example/ev-013",
+      "tags": [
+        "ia",
+        "mercado"
+      ]
+    },
+    {
+      "id": "ev-014",
+      "titulo": "Hackathon de Dados Abertos",
+      "descricao": "Use bases públicas para criar visualizações e aplicativos de interesse social. Aberto a alunos de todos os cursos.",
+      "categoria": "Hackathon",
+      "modalidade": "Online",
+      "inicio": "2027-01-23T09:00:00-03:00",
+      "fim": "2027-01-23T21:00:00-03:00",
+      "local": "Discord",
+      "organizador": "Laboratório de Dados",
+      "vagas": 100,
+      "vagasRestantes": 70,
+      "gratuito": true,
+      "preco": 0,
+      "situacao": "confirmado",
+      "link": "https://eventos360.example/ev-014",
+      "tags": [
+        "dados",
+        "hackathon"
+      ]
+    },
+    {
+      "id": "ev-015",
+      "titulo": "Feira de Carreiras e Estágios 2027",
+      "descricao": "Mais de 40 empresas com vagas de estágio, trainee e primeiro emprego. Rodadas de entrevistas e revisão de currículo no local.",
+      "categoria": "Profissional",
+      "modalidade": "Presencial",
+      "inicio": "2027-02-10T10:00:00-03:00",
+      "fim": "2027-02-10T17:00:00-03:00",
+      "local": "Pátio de Eventos",
+      "organizador": "Central de Carreiras",
+      "vagas": 800,
+      "vagasRestantes": 540,
+      "gratuito": true,
+      "preco": 0,
+      "situacao": "confirmado",
+      "link": "https://eventos360.example/ev-015",
+      "tags": [
+        "estágio",
+        "feira"
+      ]
+    },
+    {
+      "id": "ev-017",
+      "titulo": "Semana de Ciência e Tecnologia",
+      "descricao": "Exposição de projetos de iniciação científica, trabalhos de conclusão e mostra de startups universitárias.",
+      "categoria": "Semana acadêmica",
+      "modalidade": "Híbrido",
+      "inicio": "2027-03-08T18:00:00-03:00",
+      "fim": "2027-03-12T22:00:00-03:00",
+      "local": "Bloco A e transmissão online",
+      "organizador": "Pró-reitoria de Extensão",
+      "vagas": 400,
+      "vagasRestantes": 305,
+      "gratuito": true,
+      "preco": 0,
+      "situacao": "confirmado",
+      "link": "https://eventos360.example/ev-017",
+      "tags": [
+        "ciência",
+        "projetos"
+      ]
+    }
+  ]
+}
