@@ -137,6 +137,16 @@ export default function EventoScreen() {
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.conteudo}>
         {/* ---------- Faixa colorida do topo ---------- */}
         <View style={[styles.hero, { backgroundColor: visual.fundo, paddingTop: insets.top + 12 }]}>
+          {/* círculos decorativos na cor do texto, bem suaves */}
+          <View
+            pointerEvents="none"
+            style={[styles.decoGrande, { backgroundColor: visual.texto }]}
+          />
+          <View
+            pointerEvents="none"
+            style={[styles.decoPequena, { backgroundColor: visual.texto }]}
+          />
+
           <View style={styles.barra}>
             <BotaoRedondo icone="arrow-back" rotulo="Voltar" onPress={voltar} />
             <View style={styles.barraDireita}>
@@ -352,7 +362,7 @@ function BotaoRedondo({
       accessibilityLabel={rotulo}
       style={styles.redondo}
     >
-      <Ionicons name={icone} size={22} color={cor ?? "#0B0B0E"} />
+      <Ionicons name={icone} size={22} color={cor ?? "#16123F"} />
     </PressableScale>
   );
 }
@@ -402,6 +412,27 @@ const styles = criarEstilos(() => ({
     borderBottomLeftRadius: 36,
     borderBottomRightRadius: 36,
     gap: 8,
+    overflow: "hidden",
+  },
+
+  decoGrande: {
+    position: "absolute",
+    width: 240,
+    height: 240,
+    borderRadius: 120,
+    right: -80,
+    top: 40,
+    opacity: 0.1,
+  },
+
+  decoPequena: {
+    position: "absolute",
+    width: 120,
+    height: 120,
+    borderRadius: 60,
+    left: -40,
+    bottom: -30,
+    opacity: 0.1,
   },
 
   barra: {

@@ -5,6 +5,7 @@ import { useFocusEffect, useRouter } from "expo-router";
 import BannerAviso from "../../src/components/BannerAviso";
 import EventoCard from "../../src/components/EventoCard";
 import FiltrosEventos from "../../src/components/FiltrosEventos";
+import ProximoEvento from "../../src/components/ProximoEvento";
 import EmptyState from "../../src/components/ui/EmptyState";
 import ErrorState from "../../src/components/ui/ErrorState";
 import ScreenHeader from "../../src/components/ui/ScreenHeader";
@@ -17,7 +18,7 @@ import { criarEstilos } from "../../src/theme/criarEstilos";
 import { GUTTER } from "../../src/theme/tokens";
 import { Evento } from "../../src/types/Evento";
 import { dataHoraCompacta, saudacao } from "../../src/utils/datas";
-import { ehFuturo } from "../../src/utils/disponibilidade";
+import { disponibilidadeDoEvento, ehFuturo } from "../../src/utils/disponibilidade";
 import {
   FILTROS_INICIAIS,
   Filtros,
@@ -68,6 +69,15 @@ export default function EventosScreen() {
 
   const proximos = useMemo(
     () => eventos.filter((e) => ehFuturo(e, agora)).length,
+    [eventos, agora]
+  );
+
+  /* O destaque do topo: o primeiro evento que ainda aceita inscrição */
+  const destaque = useMemo(
+    () =>
+      filtrarEventos(eventos, FILTROS_INICIAIS, agora).find(
+        (e) => disponibilidadeDoEvento(e, agora) === "aberto"
+      ),
     [eventos, agora]
   );
 
@@ -137,6 +147,9 @@ export default function EventosScreen() {
         }
       />
       {aviso}
+      {status === "ok" && destaque && !temFiltroAtivo(filtros) ? (
+        <ProximoEvento evento={destaque} agora={agora} onAbrir={abrir} />
+      ) : null}
       {status === "ok" && eventos.length > 0 ? (
         <FiltrosEventos filtros={filtros} onMudar={setFiltros} />
       ) : null}

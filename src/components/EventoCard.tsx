@@ -23,11 +23,16 @@ type Props = {
   comCoracao?: boolean;
 };
 
+/** Pontinhos da picote do ingresso (separam a data do resto do cartão). */
+const PICOTE = [0, 1, 2, 3, 4, 5, 6];
+
 /**
- * Cartão de evento usado nas listas. Os dados chegam por props; o cartão
- * não sabe de onde vêm, só desenha e avisa (com o próprio evento) o que foi
- * tocado. Como as funções recebidas são estáveis, o React.memo evita
- * redesenhar os cartões que não mudaram.
+ * Cartão de evento em formato de INGRESSO: a data fica no "canhoto" colorido
+ * da categoria, separada do resto por uma linha de picote com dois recortes.
+ *
+ * Os dados chegam por props; o cartão não sabe de onde vêm, só desenha e
+ * avisa (com o próprio evento) o que foi tocado. Como as funções recebidas
+ * são estáveis, o React.memo evita redesenhar os cartões que não mudaram.
  */
 function EventoCard({
   evento,
@@ -52,18 +57,29 @@ function EventoCard({
       accessibilityLabel={`${evento.titulo}, ${evento.categoria}, ${evento.modalidade}`}
       style={[styles.cartao, apagado && styles.apagado]}
     >
-      <View style={[styles.data, { backgroundColor: visual.fundo }]}>
+      {/* Canhoto: data */}
+      <View style={[styles.canhoto, { backgroundColor: visual.fundo }]}>
+        <Ionicons name={visual.icone} size={18} color={visual.texto} style={styles.iconeCanhoto} />
         <Text style={[styles.dia, { color: visual.texto }]}>{selo.dia}</Text>
         <Text style={[styles.mes, { color: visual.texto }]}>{selo.mes}</Text>
       </View>
 
-      <View style={styles.corpo}>
-        <View style={styles.linhaCategoria}>
-          <Ionicons name={visual.icone} size={14} color={COLORS.textMuted} />
-          <Text style={styles.categoria} numberOfLines={1}>
-            {evento.categoria}
-          </Text>
+      {/* Picote + recortes */}
+      <View style={styles.picote}>
+        <View style={[styles.recorte, styles.recorteTopo]} />
+        <View style={styles.pontos}>
+          {PICOTE.map((i) => (
+            <View key={i} style={styles.ponto} />
+          ))}
         </View>
+        <View style={[styles.recorte, styles.recorteBase]} />
+      </View>
+
+      {/* Corpo */}
+      <View style={styles.corpo}>
+        <Text style={[styles.categoria, { color: COLORS.primaryLight }]} numberOfLines={1}>
+          {evento.categoria}
+        </Text>
 
         <Text
           style={[styles.titulo, disp === "cancelado" && styles.tituloRiscado]}
@@ -117,9 +133,8 @@ const styles = criarEstilos(() => ({
   cartao: {
     flexDirection: "row",
     alignItems: "stretch",
-    gap: 14,
     backgroundColor: COLORS.surface,
-    borderRadius: 26,
+    borderRadius: 24,
     borderWidth: 1.5,
     borderColor: COLORS.border,
     padding: 12,
@@ -129,12 +144,18 @@ const styles = criarEstilos(() => ({
     opacity: 0.6,
   },
 
-  data: {
-    width: 66,
-    borderRadius: 18,
+  canhoto: {
+    width: 68,
+    borderRadius: 16,
     alignItems: "center",
     justifyContent: "center",
     paddingVertical: 10,
+    gap: 0,
+  },
+
+  iconeCanhoto: {
+    opacity: 0.85,
+    marginBottom: 4,
   },
 
   dia: {
@@ -151,6 +172,43 @@ const styles = criarEstilos(() => ({
     letterSpacing: 1,
   },
 
+  picote: {
+    width: 22,
+    alignItems: "center",
+  },
+
+  pontos: {
+    flex: 1,
+    justifyContent: "space-between",
+    paddingVertical: 8,
+    alignItems: "center",
+  },
+
+  ponto: {
+    width: 3,
+    height: 3,
+    borderRadius: 2,
+    backgroundColor: COLORS.border,
+  },
+
+  // Meio círculo com a cor do fundo da tela: parece um furo no ingresso.
+  recorte: {
+    position: "absolute",
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    backgroundColor: COLORS.background,
+    left: 1,
+  },
+
+  recorteTopo: {
+    top: -23.5,
+  },
+
+  recorteBase: {
+    bottom: -23.5,
+  },
+
   corpo: {
     flex: 1,
     paddingVertical: 2,
@@ -158,16 +216,11 @@ const styles = criarEstilos(() => ({
     gap: 4,
   },
 
-  linhaCategoria: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 5,
-  },
-
   categoria: {
-    ...TYPE.small,
+    fontSize: 12,
+    fontWeight: "900",
     textTransform: "uppercase",
-    letterSpacing: 0.6,
+    letterSpacing: 0.9,
   },
 
   titulo: {

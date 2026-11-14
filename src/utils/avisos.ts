@@ -1,9 +1,9 @@
 /**
  * Recado entre telas.
  *
- * Quando o cadastro fecha, a tela de baixo (Início ou Estoque) precisa
- * saber o que aconteceu para mostrar "Camiseta cadastrada".
- * A tela do cadastro deixa o recado aqui e a outra tela lê ao voltar.
+ * Quando o formulário fecha, a tela de baixo (Detalhes ou Inscrições) precisa
+ * saber o que aconteceu para mostrar "Inscrição confirmada".
+ * O formulário deixa o recado aqui e a outra tela lê ao voltar.
  */
 let recado: string | null = null;
 

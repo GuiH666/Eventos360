@@ -2,9 +2,10 @@
  * Paletas do app. Mesma estrutura nos dois temas: cada tela pede a cor pelo
  * PAPEL que ela tem ("texto", "superfície", "perigo"), nunca pelo valor.
  *
- * Identidade: preto e papel + verde-limão elétrico, com violeta como segunda
- * cor viva. No escuro, o limão é o botão e o cartão principal. No claro, a
- * tinta preta assume o botão e o limão vira o brilho em cima dela.
+ * Identidade "noite de evento": índigo profundo e violeta elétrico, com coral
+ * como segunda cor viva e amarelo-sol nos destaques (preço, últimas vagas).
+ * No claro o fundo é um lavanda quase branco; no escuro, um índigo de meia-noite.
+ * O texto sobre o violeta é sempre branco.
  */
 export type Esquema = "claro" | "escuro";
 
@@ -65,90 +66,90 @@ export type Paleta = {
 export const ESCURO: Paleta = {
   esquema: "escuro",
 
-  background: "#0B0B0E",
-  surface: "#16161B",
-  surfaceSecondary: "#1F1F26",
-  surfaceRaised: "#2A2A34",
-  input: "#111116",
-  border: "#363641",
-  borderSoft: "#25252D",
+  background: "#0C0A22",
+  surface: "#161337",
+  surfaceSecondary: "#201C48",
+  surfaceRaised: "#2D2862",
+  input: "#110E2E",
+  border: "#3B3572",
+  borderSoft: "#25204F",
 
-  text: "#F6F6F1",
-  textSecondary: "#C4C4CD",
-  textMuted: "#8F8F9B",
+  text: "#F4F2FF",
+  textSecondary: "#C9C4F0",
+  textMuted: "#948FC9",
 
-  primary: "#C8FF2E",
-  onPrimary: "#0B0B0E",
-  primaryLight: "#D6FF6B",
-  primaryBackground: "#232C0B",
+  primary: "#7C5CFF",
+  onPrimary: "#FFFFFF",
+  primaryLight: "#A898FF",
+  primaryBackground: "#2A2266",
 
-  accent: "#9B86FF",
+  accent: "#FF7A66",
 
-  thread: "#FFB020",
-  threadSoft: "rgba(255, 176, 32, 0.4)",
-  threadBackground: "#33260A",
+  thread: "#FFC93C",
+  threadSoft: "rgba(255, 201, 60, 0.4)",
+  threadBackground: "#3A2D0B",
 
-  success: "#35E0A1",
-  danger: "#FF5D52",
-  warning: "#FFB020",
-  successBackground: "#0F2F26",
-  dangerBackground: "#3A1816",
-  warningBackground: "#33260A",
+  success: "#2DD4A0",
+  danger: "#FF6B7A",
+  warning: "#FFC93C",
+  successBackground: "#0C3330",
+  dangerBackground: "#3D1626",
+  warningBackground: "#3A2D0B",
 
-  heroBg: "#C8FF2E",
-  heroText: "#0B0B0E",
-  heroTextSoft: "rgba(11, 11, 14, 0.66)",
-  heroTrack: "rgba(11, 11, 14, 0.16)",
-  heroLine: "rgba(11, 11, 14, 0.2)",
-  heroAccent: "#0B0B0E",
+  heroBg: "#7C5CFF",
+  heroText: "#FFFFFF",
+  heroTextSoft: "rgba(255, 255, 255, 0.78)",
+  heroTrack: "rgba(255, 255, 255, 0.2)",
+  heroLine: "rgba(255, 255, 255, 0.24)",
+  heroAccent: "#FFC93C",
 
   white: "#FFFFFF",
-  overlay: "rgba(4, 4, 6, 0.74)",
+  overlay: "rgba(6, 4, 22, 0.76)",
   statusBar: "light",
 };
 
 export const CLARO: Paleta = {
   esquema: "claro",
 
-  background: "#F3F0E8",
+  background: "#F5F3FF",
   surface: "#FFFFFF",
-  surfaceSecondary: "#ECE8DD",
-  surfaceRaised: "#E1DCCF",
+  surfaceSecondary: "#ECE8FF",
+  surfaceRaised: "#DDD7FA",
   input: "#FFFFFF",
-  border: "#CFC8B8",
-  borderSoft: "#E3DED2",
+  border: "#CFC8F2",
+  borderSoft: "#E4E0F8",
 
-  text: "#111114",
-  textSecondary: "#41414B",
-  textMuted: "#666670",
+  text: "#16123F",
+  textSecondary: "#433D75",
+  textMuted: "#6A6498",
 
-  primary: "#111114",
-  onPrimary: "#C8FF2E",
-  primaryLight: "#111114",
-  primaryBackground: "#E6F8A8",
+  primary: "#5A3CF0",
+  onPrimary: "#FFFFFF",
+  primaryLight: "#4A2FD8",
+  primaryBackground: "#E6E0FF",
 
-  accent: "#5B3DF5",
+  accent: "#D93A2B",
 
-  thread: "#975000",
-  threadSoft: "rgba(151, 80, 0, 0.4)",
-  threadBackground: "#FFE9C7",
+  thread: "#8A5A00",
+  threadSoft: "rgba(138, 90, 0, 0.4)",
+  threadBackground: "#FFF0C7",
 
-  success: "#07774F",
-  danger: "#BF1F14",
-  warning: "#975000",
-  successBackground: "#D5F2E5",
-  dangerBackground: "#FFDAD6",
-  warningBackground: "#FFE9C7",
+  success: "#0B7A55",
+  danger: "#C62847",
+  warning: "#8A5A00",
+  successBackground: "#D3F3E6",
+  dangerBackground: "#FFDCE2",
+  warningBackground: "#FFF0C7",
 
-  heroBg: "#111114",
-  heroText: "#F6F6F1",
-  heroTextSoft: "rgba(246, 246, 241, 0.68)",
-  heroTrack: "rgba(246, 246, 241, 0.18)",
-  heroLine: "rgba(246, 246, 241, 0.2)",
-  heroAccent: "#C8FF2E",
+  heroBg: "#5A3CF0",
+  heroText: "#FFFFFF",
+  heroTextSoft: "rgba(255, 255, 255, 0.8)",
+  heroTrack: "rgba(255, 255, 255, 0.22)",
+  heroLine: "rgba(255, 255, 255, 0.26)",
+  heroAccent: "#FFD54A",
 
   white: "#FFFFFF",
-  overlay: "rgba(17, 17, 20, 0.5)",
+  overlay: "rgba(22, 18, 63, 0.5)",
   statusBar: "dark",
 };
 

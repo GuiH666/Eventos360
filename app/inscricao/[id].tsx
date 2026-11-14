@@ -1,5 +1,6 @@
-import React, { useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
+  Keyboard,
   KeyboardAvoidingView,
   Platform,
   ScrollView,
@@ -80,11 +81,34 @@ function validar(v: Valores): Erros {
   return erros;
 }
 
+/**
+ * Diz se o teclado está aberto. Serve para encolher o cabeçalho: com o teclado
+ * na tela sobra pouco espaço, e o campo que a pessoa digita não pode ficar
+ * espremido entre o cabeçalho e o teclado.
+ */
+function useTecladoAberto(): boolean {
+  const [aberto, setAberto] = useState(false);
+
+  useEffect(() => {
+    const mostrar = Platform.OS === "ios" ? "keyboardWillShow" : "keyboardDidShow";
+    const esconder = Platform.OS === "ios" ? "keyboardWillHide" : "keyboardDidHide";
+    const a = Keyboard.addListener(mostrar, () => setAberto(true));
+    const b = Keyboard.addListener(esconder, () => setAberto(false));
+    return () => {
+      a.remove();
+      b.remove();
+    };
+  }, []);
+
+  return aberto;
+}
+
 /** Formulário de inscrição / manifestação de interesse (abre como modal). */
 export default function InscricaoScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const router = useRouter();
   const insets = useSafeAreaInsets();
+  const tecladoAberto = useTecladoAberto();
   const { toast, mostrar } = useToast(24);
   const { buscarEvento, favoritos, agora } = useEventos();
 
@@ -191,13 +215,22 @@ export default function InscricaoScreen() {
       // No iOS o teclado empurra o conteúdo com "padding"; no Android "height" funciona melhor.
       behavior={Platform.select({ ios: "padding", default: "height" })}
     >
-      <View style={[styles.cabecalho, { paddingTop: insets.top + 12 }]}>
+      <View
+        style={[
+          styles.cabecalho,
+          tecladoAberto ? styles.cabecalhoCompacto : null,
+          { paddingTop: insets.top + (tecladoAberto ? 4 : 12) },
+        ]}
+      >
         <View style={styles.textos}>
-          <Text style={styles.acima}>Inscrição</Text>
-          <Text style={styles.titulo} numberOfLines={2}>
+          {tecladoAberto ? null : <Text style={styles.acima}>Inscrição</Text>}
+          <Text
+            style={[styles.titulo, tecladoAberto && styles.tituloCompacto]}
+            numberOfLines={tecladoAberto ? 1 : 2}
+          >
             {evento.titulo}
           </Text>
-          <Text style={styles.data}>{dataHoraCurta(evento.inicio)}</Text>
+          {tecladoAberto ? null : <Text style={styles.data}>{dataHoraCurta(evento.inicio)}</Text>}
         </View>
 
         <PressableScale
@@ -205,9 +238,9 @@ export default function InscricaoScreen() {
           onPress={fechar}
           accessibilityRole="button"
           accessibilityLabel="Fechar formulário"
-          style={styles.fechar}
+          style={[styles.fechar, tecladoAberto && styles.fecharCompacto]}
         >
-          <Ionicons name="close" size={22} color={COLORS.text} />
+          <Ionicons name="close" size={tecladoAberto ? 18 : 22} color={COLORS.text} />
         </PressableScale>
       </View>
 
@@ -341,24 +374,25 @@ export default function InscricaoScreen() {
           </Text>
         </PressableScale>
         {erroDe("aceite") ? <Text style={styles.erro}>{erroDe("aceite")}</Text> : null}
-      </ScrollView>
 
-      <View style={[styles.rodape, { paddingBottom: Math.max(insets.bottom, 16) }]}>
-        <PressableScale
-          onPress={enviar}
-          disabled={salvando}
-          accessibilityRole="button"
-          accessibilityLabel={
-            valores.tipo === "inscricao" ? "Confirmar inscrição" : "Registrar interesse"
-          }
-          style={[styles.botao, glow(), salvando && { opacity: 0.6 }]}
-        >
-          <Ionicons name="checkmark-circle-outline" size={22} color={COLORS.onPrimary} />
-          <Text style={styles.botaoTexto}>
-            {valores.tipo === "inscricao" ? "Confirmar inscrição" : "Registrar interesse"}
-          </Text>
-        </PressableScale>
-      </View>
+        {/* O botão fica no fim da rolagem (não fixo): com o teclado aberto ele não rouba espaço dos campos. */}
+        <View style={styles.rodape}>
+          <PressableScale
+            onPress={enviar}
+            disabled={salvando}
+            accessibilityRole="button"
+            accessibilityLabel={
+              valores.tipo === "inscricao" ? "Confirmar inscrição" : "Registrar interesse"
+            }
+            style={[styles.botao, glow(), salvando && { opacity: 0.6 }]}
+          >
+            <Ionicons name="checkmark-circle-outline" size={22} color={COLORS.onPrimary} />
+            <Text style={styles.botaoTexto}>
+              {valores.tipo === "inscricao" ? "Confirmar inscrição" : "Registrar interesse"}
+            </Text>
+          </PressableScale>
+        </View>
+      </ScrollView>
 
       {toast}
     </KeyboardAvoidingView>
@@ -402,6 +436,22 @@ const styles = criarEstilos(() => ({
     ...TYPE.caption,
   },
 
+  cabecalhoCompacto: {
+    alignItems: "center",
+    paddingBottom: 8,
+  },
+
+  tituloCompacto: {
+    fontSize: 17,
+    lineHeight: 22,
+  },
+
+  fecharCompacto: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+  },
+
   fechar: {
     width: 44,
     height: 44,
@@ -419,7 +469,8 @@ const styles = criarEstilos(() => ({
     alignSelf: "center",
     paddingHorizontal: GUTTER,
     paddingTop: 20,
-    paddingBottom: 140,
+    // Folga no fim para o último campo e o botão nunca ficarem colados no teclado/borda.
+    paddingBottom: 48,
   },
 
   rotuloGrupo: {
@@ -492,15 +543,7 @@ const styles = criarEstilos(() => ({
   },
 
   rodape: {
-    position: "absolute",
-    left: 0,
-    right: 0,
-    bottom: 0,
-    paddingHorizontal: GUTTER,
-    paddingTop: 12,
-    backgroundColor: COLORS.background,
-    borderTopWidth: 1.5,
-    borderTopColor: COLORS.borderSoft,
+    marginTop: 24,
     alignItems: "center",
   },
 

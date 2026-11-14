@@ -31,7 +31,7 @@ export async function configurarNotificacoes() {
       description: "Avisos dos eventos que você favoritou",
       importance: Notifications.AndroidImportance.HIGH,
       vibrationPattern: [0, 250, 250, 250],
-      lightColor: "#C8FF2E",
+      lightColor: "#7C5CFF",
     });
   }
 }

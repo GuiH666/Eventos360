@@ -10,23 +10,24 @@ type Visual = {
 };
 
 /*
- * Cada categoria tem uma cor própria. As cores mudam entre o tema claro e o
- * escuro para manter o contraste do texto em cima delas.
+ * Cada categoria tem uma cor própria: violeta (palestra), coral (oficina),
+ * amarelo (hackathon), turquesa (semana acadêmica) e azul (profissional).
+ * Mudam entre o tema claro e o escuro para manter o contraste do texto.
  */
 const CORES_ESCURO: Record<Categoria, string> = {
-  Palestra: "#C8FF2E",
-  Oficina: "#9B86FF",
-  Hackathon: "#FFB020",
-  "Semana acadêmica": "#35E0A1",
-  Profissional: "#FF7AC8",
+  Palestra: "#A898FF",
+  Oficina: "#FF7A66",
+  Hackathon: "#FFC93C",
+  "Semana acadêmica": "#2DD4C4",
+  Profissional: "#62B6FF",
 };
 
 const CORES_CLARO: Record<Categoria, string> = {
-  Palestra: "#111114",
-  Oficina: "#5B3DF5",
-  Hackathon: "#975000",
-  "Semana acadêmica": "#07774F",
-  Profissional: "#B3126B",
+  Palestra: "#5A3CF0",
+  Oficina: "#D93A2B",
+  Hackathon: "#8A5A00",
+  "Semana acadêmica": "#0A7C86",
+  Profissional: "#1B5FB8",
 };
 
 const ICONES: Record<Categoria, keyof typeof Ionicons.glyphMap> = {
@@ -44,8 +45,8 @@ export function visualDaCategoria(categoria: Categoria): Visual {
 
   return {
     fundo,
-    // Palestra no tema claro é preta: o texto vira limão, como o botão do app.
-    texto: escuro ? "#0B0B0E" : categoria === "Palestra" ? "#C8FF2E" : "#FFFFFF",
+    // Cores vivas no escuro levam texto escuro; cores fortes no claro levam texto branco.
+    texto: escuro ? "#0C0A22" : "#FFFFFF",
     icone: ICONES[categoria],
   };
 }
