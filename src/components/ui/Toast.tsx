@@ -20,8 +20,8 @@ type Tipo = "sucesso" | "erro";
 export function useToast(bottom = 110) {
   const [mensagem, setMensagem] = useState("");
   const [tipo, setTipo] = useState<Tipo>("sucesso");
-  const opacidade = useRef(new Animated.Value(0)).current;
-  const deslocamento = useRef(new Animated.Value(16)).current;
+  const [opacidade] = useState(() => new Animated.Value(0));
+  const [deslocamento] = useState(() => new Animated.Value(16));
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {

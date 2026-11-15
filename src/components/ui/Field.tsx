@@ -9,6 +9,12 @@ import {
 import { COLORS } from "../../theme/colors";
 import { criarEstilos } from "../../theme/criarEstilos";
 
+/**
+ * Tipo da instância de um TextInput (o que `ref.current` guarda e onde existe `.focus()`).
+ * Derivado do próprio componente para acompanhar os tipos de cada versão do React Native.
+ */
+export type CampoRef = React.ComponentRef<typeof TextInput>;
+
 type Props = TextInputProps & {
   rotulo: string;
   /** Texto cinza ao lado do rótulo (ex.: "opcional") */
@@ -28,7 +34,7 @@ type Props = TextInputProps & {
  * Campo de texto com rótulo, estado de foco e mensagem de erro.
  * O rótulo fica sempre visível (nada de placeholder fazendo papel de título).
  */
-const Field = forwardRef<TextInput, Props>(function Field(
+const Field = forwardRef<CampoRef, Props>(function Field(
   { rotulo, dica, erro, prefixo, grande, direita, linhas, onFocus, onBlur, style, ...rest },
   ref
 ) {

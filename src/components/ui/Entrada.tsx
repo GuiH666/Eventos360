@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import {
   AccessibilityInfo,
   Animated,
@@ -26,7 +26,7 @@ export default function Entrada({
   distancia = 14,
   style,
 }: Props) {
-  const progresso = useRef(new Animated.Value(0)).current;
+  const [progresso] = useState(() => new Animated.Value(0));
 
   useEffect(() => {
     let cancelado = false;

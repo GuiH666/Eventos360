@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import {
   AccessibilityInfo,
   Animated,
@@ -29,7 +29,7 @@ export function Skeleton({
   raio = 10,
   style,
 }: SkeletonProps) {
-  const pulso = useRef(new Animated.Value(0.5)).current;
+  const [pulso] = useState(() => new Animated.Value(0.5));
 
   useEffect(() => {
     let cancelado = false;

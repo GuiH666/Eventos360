@@ -5,7 +5,6 @@ import {
   Platform,
   ScrollView,
   Text,
-  TextInput,
   View,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
@@ -14,7 +13,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import Chip from "../../src/components/ui/Chip";
 import EmptyState from "../../src/components/ui/EmptyState";
-import Field from "../../src/components/ui/Field";
+import Field, { type CampoRef } from "../../src/components/ui/Field";
 import PressableScale from "../../src/components/ui/PressableScale";
 import { useToast } from "../../src/components/ui/Toast";
 import { salvarInscricao } from "../../src/services/inscricoesService";
@@ -122,10 +121,10 @@ export default function InscricaoScreen() {
   const [tentou, setTentou] = useState(false);
   const [salvando, setSalvando] = useState(false);
 
-  const emailRef = useRef<TextInput>(null);
-  const telefoneRef = useRef<TextInput>(null);
-  const cursoRef = useRef<TextInput>(null);
-  const obsRef = useRef<TextInput>(null);
+  const emailRef = useRef<CampoRef>(null);
+  const telefoneRef = useRef<CampoRef>(null);
+  const cursoRef = useRef<CampoRef>(null);
+  const obsRef = useRef<CampoRef>(null);
 
   const erros = useMemo(() => validar(valores), [valores]);
 

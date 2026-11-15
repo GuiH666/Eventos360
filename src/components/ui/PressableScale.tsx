@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useState } from "react";
 import {
   Animated,
   GestureResponderEvent,
@@ -28,7 +28,7 @@ export default function PressableScale({
   children,
   ...rest
 }: Props) {
-  const valor = useRef(new Animated.Value(1)).current;
+  const [valor] = useState(() => new Animated.Value(1));
 
   function animar(para: number) {
     Animated.spring(valor, {

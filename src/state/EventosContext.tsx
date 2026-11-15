@@ -177,6 +177,8 @@ export function EventosProvider({ children }: { children: React.ReactNode }) {
 
   /* Primeira carga: mostra a cópia salva na hora e atualiza pela API em seguida */
   useEffect(() => {
+    // Carga inicial a partir do SQLite local (fonte externa): uso legítimo de efeito.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     recarregarFavoritos();
 
     try {

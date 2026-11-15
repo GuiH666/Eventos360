@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   AccessibilityInfo,
   Animated,
@@ -25,7 +25,7 @@ export default function ValorAnimado({
   duracao = 700,
   ...texto
 }: Props) {
-  const animado = useRef(new Animated.Value(0)).current;
+  const [animado] = useState(() => new Animated.Value(0));
   const [exibido, setExibido] = useState(0);
 
   useEffect(() => {

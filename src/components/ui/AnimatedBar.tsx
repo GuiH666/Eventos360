@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AccessibilityInfo, Animated, Easing, View } from "react-native";
 import { COLORS } from "../../theme/colors";
 import { criarEstilos } from "../../theme/criarEstilos";
@@ -23,7 +23,7 @@ export default function AnimatedBar({
   atraso = 0,
 }: Props) {
   const alvo = Math.max(0, Math.min(1, proporcao));
-  const valor = useRef(new Animated.Value(0)).current;
+  const [valor] = useState(() => new Animated.Value(0));
   const [reduzir, setReduzir] = useState(false);
 
   useEffect(() => {

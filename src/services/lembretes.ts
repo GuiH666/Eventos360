@@ -29,6 +29,8 @@ export async function configurarNotificacoes() {
     await Notifications.setNotificationChannelAsync(CANAL_LEMBRETES, {
       name: "Lembretes de eventos",
       description: "Avisos dos eventos que você favoritou",
+      // AndroidImportance existe no expo-notifications; o lint não enxerga esse re-export.
+      // eslint-disable-next-line import/namespace
       importance: Notifications.AndroidImportance.HIGH,
       vibrationPattern: [0, 250, 250, 250],
       lightColor: "#7C5CFF",

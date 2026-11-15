@@ -3,6 +3,9 @@ import { StyleSheet } from "react-native";
 import type { Esquema } from "./paletas";
 import { esquemaAtual } from "./tema";
 
+/** Formato aceito pelo StyleSheet.create (tirado dele, para valer em qualquer versão do RN). */
+type EntradaEstilos = Parameters<typeof StyleSheet.create>[0];
+
 /**
  * Igual ao StyleSheet.create, mas refeito para cada tema.
  *
@@ -11,19 +14,17 @@ import { esquemaAtual } from "./tema";
  * resultado fica guardado. Assim `styles.cartao` sempre aponta para o estilo
  * do tema que está valendo.
  */
-export function criarEstilos<
-  T extends StyleSheet.NamedStyles<T> | StyleSheet.NamedStyles<any>
->(fabrica: () => T | StyleSheet.NamedStyles<T>): T {
+export function criarEstilos<T extends EntradaEstilos>(fabrica: () => T): T {
   const guardados: Partial<Record<Esquema, T>> = {};
 
   function doTema(): T {
     const esquema = esquemaAtual();
-    let estilos = guardados[esquema];
-    if (!estilos) {
-      estilos = StyleSheet.create(fabrica()) as T;
-      guardados[esquema] = estilos;
-    }
-    return estilos;
+    const existente = guardados[esquema];
+    if (existente) return existente;
+
+    const novo = StyleSheet.create(fabrica()) as unknown as T;
+    guardados[esquema] = novo;
+    return novo;
   }
 
   // Só a leitura (styles.cartao) é interceptada; cada estilo devolvido é um
