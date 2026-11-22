@@ -1,5 +1,7 @@
 # Eventos 360
 
+[![CI](https://github.com/GuiH666/Eventos360/actions/workflows/ci.yml/badge.svg)](https://github.com/GuiH666/Eventos360/actions/workflows/ci.yml) ![Licença MIT](https://img.shields.io/badge/licen%C3%A7a-MIT-blue)
+
 Aplicativo mobile que **centraliza e organiza eventos** (palestras, oficinas, hackathons, semanas acadêmicas e eventos profissionais) para estudantes. Feito em **React Native + Expo + TypeScript** para a avaliação A2 de Programação para Dispositivos Móveis (Grupo 8).
 
 ## O que o app faz
@@ -26,6 +28,18 @@ npx expo start --dev-client   # precisa do Development Build instalado (veja doc
 ```
 
 > Notificações locais funcionam no Development Build / APK. O Expo Go tem limitações com `expo-notifications`.
+
+## Testes
+
+As regras que não dependem do aparelho (validação do formulário, datas em português, disponibilidade do evento e filtros da lista) têm testes automáticos com [Vitest](https://vitest.dev/):
+
+```bash
+npm test            # testes
+npm run typecheck   # TypeScript
+npm run lint        # ESLint
+```
+
+Os testes ficam em `src/utils/__tests__/` e o GitHub Actions roda os três comandos a cada push. O roteiro de teste manual no aparelho está em [docs/CHECKLIST_TESTES.md](docs/CHECKLIST_TESTES.md).
 
 ## API REST
 
